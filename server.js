@@ -20,9 +20,11 @@ app.get('/fm-channels/:zip', async (req, res) => {
         // Log the constructed URL for debugging
         console.log(`Requesting URL: ${url}`);
 
-        const { data } = await axios.get(url);
+        const response = await axios.get(url);
+        const { data } = response;
 
-        // Log the received HTML for debugging
+        // Log the status and received HTML for debugging
+        console.log('Status:', response.status);
         console.log('Received HTML:', data);
 
         const $ = cheerio.load(data);
